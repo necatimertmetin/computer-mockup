@@ -40,7 +40,8 @@ export const Mac = ({ color = "Dark", width = 600, children }: MacProps) => {
   //black border radius 5px
 
   const aspectRatio = 3735 / 2545;
-  const borderRadius = (5 * width) / 3735 + "px";
+  const borderRadiusMac = (64 * width) / 3735 + "px";
+  const borderRadiusScreen = (5 * width) / 3735 + "px";
   const marginX = (97 * width) / 3735 + "px";
   const marginTop = (90 * width) / 3735 + "px";
   const marginBottom = (461 * width) / 3735 + "px";
@@ -54,28 +55,29 @@ export const Mac = ({ color = "Dark", width = 600, children }: MacProps) => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         width: `${width}px`,
+        borderRadius: borderRadiusMac,
         aspectRatio: aspectRatio,
         display: "flex",
         position: "relative",
-        perspective: "1000px",
-        transition: "transform 0.6s ease-in-out",
-        transform: "rotateY(20deg)", // Sağ tarafa döndürme
-        filter: "drop-shadow(-10px 0px 15px #000000)", // Soldan gelen gölge
-        boxShadow: "-10px 0px 15px #000000", // Soldan gelen gölge
+
+        filter: "drop-shadow(-10px 0px 15px #000000)",
+        boxShadow: "-10px 0px 15px #000000",
       }}
     >
-      <Box
-        sx={{
-          backgroundColor: "white",
-          flex: 1,
-          borderRadius: borderRadius,
-          border: `${borderThickness} solid black`,
-          margin: `${marginTop} ${marginX} ${marginBottom} ${marginX}`,
-          display: "flex",
-        }}
-      >
-        {children}
-      </Box>
+      {children && (
+        <Box
+          sx={{
+            backgroundColor: "white",
+            flex: 1,
+            borderRadius: borderRadiusScreen,
+            border: `${borderThickness} solid black`,
+            margin: `${marginTop} ${marginX} ${marginBottom} ${marginX}`,
+            overflow: "hidden",
+          }}
+        >
+          {children}
+        </Box>
+      )}
     </Box>
   );
 };
